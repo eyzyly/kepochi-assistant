@@ -7,7 +7,7 @@ questions -> game.csv (matching `data/llm_capstone_output_sample.csv` schema).
 ## Setup
 
 ```
-cp .envrc_template .envrc   # fill in OPENAI_API_KEY, then `source .envrc` or use direnv
+cp .env.template .env   # fill in OPENAI_API_KEY (loaded automatically via python-dotenv)
 uv sync
 ```
 

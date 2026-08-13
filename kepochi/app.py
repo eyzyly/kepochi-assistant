@@ -1,5 +1,10 @@
+import os
+import sys
+
 import pandas as pd
 import streamlit as st
+
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from kepochi.game import build_game_csv, generate_questions, generate_topics
 from kepochi.synthetic_data import generate_synthetic_data, save_synthetic_data

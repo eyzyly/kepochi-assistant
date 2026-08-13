@@ -1,26 +1,26 @@
 person_id,question_id,question,answer
-P1,Q1,What is your favorite meal?,Nasi lemak
-P1,Q2,What is your favorite football club?,Selangor FA
-P1,Q3,What is your favorite activity to do with your grandchildren?,Telling them stories from my childhood
-P1,Q4,What is your favorite traditional Malaysian dessert?,Kuih lapis
-P1,Q5,What is your favorite old Malay movie?,Bujang Lapok
-P2,Q1,What is your favorite book?,Pujangga Melayu
-P2,Q2,What is your favorite meal?,Rendang daging
-P2,Q3,What is your favorite thing to do with your grandchildren?,Gardening with them
-P2,Q4,What is your favorite family tradition?,Eid celebration gatherings
-P2,Q5,What is your favorite piece of jewelry?,Gold bangles
+P1,Q1,What is your favorite football club?,Singapore Lions
+P1,Q2,What is your favorite meal?,Nasi Lemak
+P1,Q3,What is your favorite toy from childhood?,Wooden top
+P1,Q4,What is your favorite movie?,P.Ramlee films
+P1,Q5,Who is your favorite historical figure?,Tunku Abdul Rahman
+P2,Q1,What is your favorite football club?,Selangor FA
+P2,Q2,What is your favorite meal?,Rendang
+P2,Q3,What is your favorite childhood toy?,Doll
+P2,Q4,What is your favorite movie?,Ombak Rindu
+P2,Q5,What is your favorite pastime activity?,Gardening
 P3,Q1,What is your favorite football club?,Manchester United
-P3,Q2,What is your favorite meal?,Char kway teow
-P3,Q3,What is your favorite video game?,FIFA
-P3,Q4,What is your favorite activity with your kids?,Playing football in the park
-P3,Q5,What is your favorite movie?,Avengers: Endgame
-P4,Q1,What is your favorite meal?,Nasi kerabu
-P4,Q2,What is your favorite activity with your kids?,Going to the amusement park
-P4,Q3,What is your favorite book?,The Hunger Games
-P4,Q4,What is your favorite toy as a child?,Barbie dolls
-P4,Q5,What is your favorite sport?,Badminton
-P5,Q1,What is your favorite Canadian dish?,Poutine
-P5,Q2,What is your favorite video game?,The Legend of Zelda: Breath of the Wild
-P5,Q3,What is your favorite thing about living in Canada?,The beautiful nature and outdoor activities
-P5,Q4,What is your favorite toy as a child?,LEGO
-P5,Q5,What is your favorite movie?,Everything Everywhere All at Once
+P3,Q2,What is your favorite meal?,Chicken Biryani
+P3,Q3,What was your favorite toy growing up?,Remote-Control Car
+P3,Q4,What is your favorite video game?,FIFA series
+P3,Q5,What is your favorite family activity?,Weekend barbecues
+P4,Q1,What is your favorite football club?,Liverpool
+P4,Q2,What is your favorite meal?,Laksa
+P4,Q3,What is your favorite childhood toy?,Lego set
+P4,Q4,What is your favorite movie?,Crazy Rich Asians
+P4,Q5,What is your favorite hobby?,Cooking
+P5,Q1,What is your favorite football club?,Real Madrid
+P5,Q2,What is your favorite meal?,Pasta Primavera
+P5,Q3,What was your favorite childhood toy?,Barbie doll
+P5,Q4,What is your favorite video game?,The Legend of Zelda
+P5,Q5,What do you miss most about Malaysia?,Family gatherings

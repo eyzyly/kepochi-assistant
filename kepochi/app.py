@@ -8,7 +8,7 @@ PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, PROJECT_ROOT)
 DATA_DIR = os.path.join(PROJECT_ROOT, "data")
 
-from kepochi.game import build_game_csv, generate_questions, generate_topics
+from kepochi.game import build_game_csv, generate_answers, generate_clues, generate_topics
 from kepochi.synthetic_data import generate_synthetic_data, save_synthetic_data
 
 st.set_page_config(page_title="Kepochi", page_icon="🕹️")
@@ -27,6 +27,12 @@ if "topic_queue" not in st.session_state:
     st.session_state.topic_queue = None
 if "current_topic_index" not in st.session_state:
     st.session_state.current_topic_index = 0
+if "review_stage" not in st.session_state:
+    st.session_state.review_stage = "answers"
+if "current_answers" not in st.session_state:
+    st.session_state.current_answers = None
+if "current_answers_feedback_history" not in st.session_state:
+    st.session_state.current_answers_feedback_history = []
 if "current_questions" not in st.session_state:
     st.session_state.current_questions = None
 if "current_feedback_history" not in st.session_state:
@@ -45,6 +51,9 @@ def _reset_downstream_state():
     st.session_state.questions_by_topic = {}
     st.session_state.topic_queue = None
     st.session_state.current_topic_index = 0
+    st.session_state.review_stage = "answers"
+    st.session_state.current_answers = None
+    st.session_state.current_answers_feedback_history = []
     st.session_state.current_questions = None
     st.session_state.current_feedback_history = []
 
@@ -95,6 +104,9 @@ if st.session_state.demographics is not None:
         st.session_state.topic_queue = list(st.session_state.selected_topics)
         st.session_state.current_topic_index = 0
         st.session_state.questions_by_topic = {}
+        st.session_state.review_stage = "answers"
+        st.session_state.current_answers = None
+        st.session_state.current_answers_feedback_history = []
         st.session_state.current_questions = None
         st.session_state.current_feedback_history = []
 
@@ -107,39 +119,93 @@ if st.session_state.demographics is not None:
         current_topic = queue[st.session_state.current_topic_index]
         st.subheader(f"Reviewing topic {st.session_state.current_topic_index + 1}/{len(queue)}: {current_topic}")
 
-        if st.session_state.current_questions is None:
-            with st.spinner(f"Generating questions for '{current_topic}'..."):
-                st.session_state.current_questions = generate_questions(
-                    st.session_state.demographics, st.session_state.responses, current_topic
-                )
+        if st.session_state.review_stage == "answers":
+            st.caption("Stage 1/2: confirm the 5 answers before clues are written")
 
-        st.table(pd.DataFrame(st.session_state.current_questions))
+            if st.session_state.current_answers is None:
+                with st.spinner(f"Generating answers for '{current_topic}'..."):
+                    st.session_state.current_answers = generate_answers(
+                        st.session_state.demographics, st.session_state.responses, current_topic
+                    )
 
-        if st.session_state.current_feedback_history:
-            with st.expander(f"Feedback given so far for '{current_topic}'"):
-                for i, f in enumerate(st.session_state.current_feedback_history, start=1):
-                    st.write(f"{i}. {f}")
+            st.table(pd.DataFrame(st.session_state.current_answers))
 
-        if st.button("Looks good, next topic"):
-            st.session_state.questions_by_topic[current_topic] = st.session_state.current_questions
-            st.session_state.current_topic_index += 1
-            st.session_state.current_questions = None
-            st.session_state.current_feedback_history = []
-            st.rerun()
+            if st.session_state.current_answers_feedback_history:
+                with st.expander(f"Feedback given so far for '{current_topic}' answers"):
+                    for i, f in enumerate(st.session_state.current_answers_feedback_history, start=1):
+                        st.write(f"{i}. {f}")
 
-        feedback = st.text_area("Feedback to revise these questions (optional)", key=f"feedback_{current_topic}")
-        if st.button("Regenerate with feedback"):
-            feedback_history = st.session_state.current_feedback_history + [feedback]
-            with st.spinner(f"Regenerating questions for '{current_topic}'..."):
-                st.session_state.current_questions = generate_questions(
-                    st.session_state.demographics,
-                    st.session_state.responses,
-                    current_topic,
-                    feedback_history=feedback_history,
-                    previous_questions=st.session_state.current_questions,
-                )
-            st.session_state.current_feedback_history = feedback_history
-            st.rerun()
+            if st.button("Answers look good, generate clues"):
+                st.session_state.review_stage = "questions"
+                st.session_state.current_questions = None
+                st.session_state.current_feedback_history = []
+                st.rerun()
+
+            answers_feedback = st.text_area(
+                "Feedback to revise these answers (optional)", key=f"answers_feedback_{current_topic}"
+            )
+            if st.button("Regenerate answers with feedback"):
+                feedback_history = st.session_state.current_answers_feedback_history + [answers_feedback]
+                with st.spinner(f"Regenerating answers for '{current_topic}'..."):
+                    st.session_state.current_answers = generate_answers(
+                        st.session_state.demographics,
+                        st.session_state.responses,
+                        current_topic,
+                        feedback_history=feedback_history,
+                        previous_answers=st.session_state.current_answers,
+                    )
+                st.session_state.current_answers_feedback_history = feedback_history
+                st.rerun()
+
+        else:
+            st.caption("Stage 2/2: confirm the clues for the answers above")
+            st.table(pd.DataFrame(st.session_state.current_answers))
+
+            if st.session_state.current_questions is None:
+                with st.spinner(f"Generating clues for '{current_topic}'..."):
+                    st.session_state.current_questions = generate_clues(
+                        st.session_state.demographics,
+                        st.session_state.responses,
+                        current_topic,
+                        st.session_state.current_answers,
+                    )
+
+            st.table(pd.DataFrame(st.session_state.current_questions))
+
+            if st.session_state.current_feedback_history:
+                with st.expander(f"Feedback given so far for '{current_topic}' clues"):
+                    for i, f in enumerate(st.session_state.current_feedback_history, start=1):
+                        st.write(f"{i}. {f}")
+
+            if st.button("Looks good, next topic"):
+                st.session_state.questions_by_topic[current_topic] = st.session_state.current_questions
+                st.session_state.current_topic_index += 1
+                st.session_state.review_stage = "answers"
+                st.session_state.current_answers = None
+                st.session_state.current_answers_feedback_history = []
+                st.session_state.current_questions = None
+                st.session_state.current_feedback_history = []
+                st.rerun()
+
+            back_col, _ = st.columns(2)
+            if back_col.button("Back to answers"):
+                st.session_state.review_stage = "answers"
+                st.rerun()
+
+            feedback = st.text_area("Feedback to revise these clues (optional)", key=f"feedback_{current_topic}")
+            if st.button("Regenerate clues with feedback"):
+                feedback_history = st.session_state.current_feedback_history + [feedback]
+                with st.spinner(f"Regenerating clues for '{current_topic}'..."):
+                    st.session_state.current_questions = generate_clues(
+                        st.session_state.demographics,
+                        st.session_state.responses,
+                        current_topic,
+                        st.session_state.current_answers,
+                        feedback_history=feedback_history,
+                        previous_questions=st.session_state.current_questions,
+                    )
+                st.session_state.current_feedback_history = feedback_history
+                st.rerun()
     elif queue:
         st.success("All topics reviewed and confirmed.")
 

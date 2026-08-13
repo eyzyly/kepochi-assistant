@@ -1,26 +1,26 @@
 person_id,question_id,question,answer
-P1,Q1,What is your favorite football club?,Selangor FA
-P1,Q2,What is your favorite meal?,Nasi Lemak
-P1,Q3,What is your favorite toy from childhood?,Wooden top
-P1,Q4,What is your favorite movie?,P. Ramlee films
-P1,Q5,What is your favorite pastime?,Gardening
-P2,Q1,What is your favorite meal?,Rendang
-P2,Q2,What is your favorite toy from childhood?,Doll
-P2,Q3,What is your favorite show or movie?,Bujang Lapok
-P2,Q4,What is your hobby?,Cooking
-P2,Q5,What is your favorite fruit?,Mango
-P3,Q1,What is your favorite football club?,Liverpool FC
-P3,Q2,What is your favorite meal?,Sate
-P3,Q3,What is your favorite toy from childhood?,Remote control car
-P3,Q4,What is your favorite video game?,FIFA series
-P3,Q5,What is your favorite holiday destination?,Langkawi
-P4,Q1,What is your favorite meal?,Nasi Goreng
-P4,Q2,What is your favorite childhood toy?,Barbie doll
-P4,Q3,What is your favorite movie?,Frozen
-P4,Q4,What is your favorite video game?,The Sims
-P4,Q5,Who is your favorite superhero?,Wonder Woman
-P5,Q1,What is your favorite meal?,Pizza
-P5,Q2,What is your favorite toy?,Teddy Bear
-P5,Q3,What is your favorite video game?,Minecraft
-P5,Q4,What is your favorite movie?,Harry Potter series
-P5,Q5,What is your favorite place in Canada?,Niagara Falls
+P1,Q1,What is your favourite football club?,Liverpool
+P1,Q2,What is your favourite meal?,Nasi lemak
+P1,Q3,What is your favourite toy from childhood?,Kite
+P1,Q4,What is your favorite movie?,The Sound of Music
+P1,Q5,What is your favourite pastime?,Gardening
+P2,Q1,What is your favourite football club?,Manchester United
+P2,Q2,What is your favourite meal?,Rendang
+P2,Q3,What is your favourite toy from childhood?,Doll
+P2,Q4,What is your favorite movie?,Casablanca
+P2,Q5,What is your favourite hobby?,Cooking
+P3,Q1,What is your favourite football club?,Selangor FC
+P3,Q2,What is your favourite meal?,Char kway teow
+P3,Q3,What is your favourite childhood toy?,Action figures
+P3,Q4,What is your favorite video game?,FIFA 21
+P3,Q5,What is your biggest inspiration?,My father
+P4,Q1,What is your favourite football club?,Arsenal
+P4,Q2,What is your favourite meal?,Nasi ayam
+P4,Q3,What is your favourite toy from childhood?,Barbie
+P4,Q4,What is your favorite movie?,Frozen
+P4,Q5,What do you love most about Malaysia?,The diversity
+P5,Q1,What is your favourite football club?,Bayern Munich
+P5,Q2,What is your favourite meal?,Poutine
+P5,Q3,What is your favourite childhood toy?,LEGO
+P5,Q4,What is your favorite video game?,The Legend of Zelda: Breath of the Wild
+P5,Q5,What do you miss about Malaysia?,The warm weather and family gatherings

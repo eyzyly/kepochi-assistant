@@ -1,3 +1,6 @@
+import random
+import string
+
 import pandas as pd
 
 from kepochi.llm import chat_json
@@ -14,6 +17,7 @@ TOPICS_PROMPT_TEMPLATE = """Family context (demographics + survey responses):
 Generate a list of 10 candidate Jeopardy topics based on this context. Each topic should be
 something the family can learn about one another from (e.g. "Uncle Ben's Favourite Foods",
 "Guess Whose Childhood Toy"). The topics should not be refer to a specific family member but rather a general theme around the question.
+Topics must not be repetitive.
 
 Return strict JSON: {{"topics": ["topic 1", "topic 2", ...]}}
 """
@@ -54,7 +58,13 @@ def generate_questions(demographics, responses, topic):
     return data["questions"]
 
 
-def build_game_csv(topics_with_questions, game_id="kepochi_game_001"):
+def _random_game_id():
+    suffix = "".join(random.choices(string.ascii_lowercase + string.digits, k=4))
+    return f"kepochi_game_{suffix}"
+
+
+def build_game_csv(topics_with_questions, game_id=None):
+    game_id = game_id or _random_game_id()
     """topics_with_questions: list of (topic, [questions]) tuples."""
     rows = []
     for topic, questions in topics_with_questions:

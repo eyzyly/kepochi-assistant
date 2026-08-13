@@ -67,6 +67,10 @@ if data_source == "Generate synthetic data":
             st.session_state.responses = responses
             save_synthetic_data(demographics, responses, out_dir=DATA_DIR)
             _reset_downstream_state()
+            st.success(
+                f"Saved to {os.path.join(DATA_DIR, 'synthetic_demographics.csv')} "
+                f"and {os.path.join(DATA_DIR, 'synthetic_responses.csv')}"
+            )
 else:
     demo_path = st.text_input("Demographics CSV path", value=os.path.join(DATA_DIR, "demographics.csv"))
     resp_path = st.text_input("Responses CSV path", value=os.path.join(DATA_DIR, "responses.csv"))

@@ -1,6 +1,6 @@
 person_id,name,age,gender,country_of_birth,ethnicity,current_city
-P1,Ahmad,75,Male,Singapore,Malay,Kuala Lumpur
-P2,Fatimah,72,Female,Malaysia,Malay,Kuala Lumpur
-P3,Zain,43,Male,Malaysia,Malay,Kuala Lumpur
-P4,Aisyah,38,Female,Malaysia,Malay,Kuala Lumpur
-P5,Daniel,31,Male,Malaysia,Malay,"Toronto, Canada"
+P1,Ahmad bin Mohd,73,male,Singapore,Malay,Kuala Lumpur
+P2,Fatimah binti Rahman,70,female,Kuala Lumpur,Malay,Kuala Lumpur
+P3,Rashid bin Ahmad,43,male,Kuala Lumpur,Malay,Kuala Lumpur
+P4,Siti Aishah binti Rashid,38,female,Kuala Lumpur,Malay,Kuala Lumpur
+P5,Nadia bin Rashid,31,female,Kuala Lumpur,Malay,"Toronto, Canada"

@@ -29,6 +29,8 @@ if "current_topic_index" not in st.session_state:
     st.session_state.current_topic_index = 0
 if "current_questions" not in st.session_state:
     st.session_state.current_questions = None
+if "current_feedback_history" not in st.session_state:
+    st.session_state.current_feedback_history = []
 
 st.header("Step 1: Family data")
 data_source = st.radio(
@@ -44,6 +46,7 @@ def _reset_downstream_state():
     st.session_state.topic_queue = None
     st.session_state.current_topic_index = 0
     st.session_state.current_questions = None
+    st.session_state.current_feedback_history = []
 
 
 if data_source == "Generate synthetic data":
@@ -93,6 +96,7 @@ if st.session_state.demographics is not None:
         st.session_state.current_topic_index = 0
         st.session_state.questions_by_topic = {}
         st.session_state.current_questions = None
+        st.session_state.current_feedback_history = []
 
     for topic, questions in st.session_state.questions_by_topic.items():
         st.subheader(f"{topic} ✅")
@@ -111,22 +115,30 @@ if st.session_state.demographics is not None:
 
         st.table(pd.DataFrame(st.session_state.current_questions))
 
+        if st.session_state.current_feedback_history:
+            with st.expander(f"Feedback given so far for '{current_topic}'"):
+                for i, f in enumerate(st.session_state.current_feedback_history, start=1):
+                    st.write(f"{i}. {f}")
+
         if st.button("Looks good, next topic"):
             st.session_state.questions_by_topic[current_topic] = st.session_state.current_questions
             st.session_state.current_topic_index += 1
             st.session_state.current_questions = None
+            st.session_state.current_feedback_history = []
             st.rerun()
 
         feedback = st.text_area("Feedback to revise these questions (optional)", key=f"feedback_{current_topic}")
         if st.button("Regenerate with feedback"):
+            feedback_history = st.session_state.current_feedback_history + [feedback]
             with st.spinner(f"Regenerating questions for '{current_topic}'..."):
                 st.session_state.current_questions = generate_questions(
                     st.session_state.demographics,
                     st.session_state.responses,
                     current_topic,
-                    feedback=feedback,
+                    feedback_history=feedback_history,
                     previous_questions=st.session_state.current_questions,
                 )
+            st.session_state.current_feedback_history = feedback_history
             st.rerun()
     elif queue:
         st.success("All topics reviewed and confirmed.")

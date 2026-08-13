@@ -41,8 +41,9 @@ FEEDBACK_SECTION_TEMPLATE = """
 The previous attempt at this topic was:
 {previous_questions}
 
-The user gave this feedback, revise the questions accordingly:
-{feedback}
+The user gave the following feedback across revision rounds so far, in order. Make sure the
+latest revision still satisfies all of it, not just the most recent round:
+{feedback_history}
 """
 
 
@@ -59,12 +60,13 @@ def generate_topics(demographics, responses):
     return data["topics"]
 
 
-def generate_questions(demographics, responses, topic, feedback=None, previous_questions=None):
+def generate_questions(demographics, responses, topic, feedback_history=None, previous_questions=None):
     context = _build_context(demographics, responses)
     feedback_section = ""
-    if feedback:
+    if feedback_history:
+        numbered_feedback = "\n".join(f"{i}. {f}" for i, f in enumerate(feedback_history, start=1))
         feedback_section = FEEDBACK_SECTION_TEMPLATE.format(
-            previous_questions=previous_questions, feedback=feedback
+            previous_questions=previous_questions, feedback_history=numbered_feedback
         )
     prompt = QUESTIONS_PROMPT_TEMPLATE.format(context=context, topic=topic, feedback_section=feedback_section)
     data = chat_json(SYSTEM_PROMPT, prompt)

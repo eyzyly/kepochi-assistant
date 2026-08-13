@@ -13,7 +13,7 @@ TOPICS_PROMPT_TEMPLATE = """Family context (demographics + survey responses):
 
 Generate a list of 10 candidate Jeopardy topics based on this context. Each topic should be
 something the family can learn about one another from (e.g. "Uncle Ben's Favourite Foods",
-"Guess Whose Childhood Toy").
+"Guess Whose Childhood Toy"). The topics should not be refer to a specific family member but rather a general theme around the question.
 
 Return strict JSON: {{"topics": ["topic 1", "topic 2", ...]}}
 """
@@ -24,6 +24,7 @@ QUESTIONS_PROMPT_TEMPLATE = """Family context (demographics + survey responses):
 Generate exactly 5 Jeopardy-style questions for the topic "{topic}", ranked easiest to hardest,
 worth 200, 400, 600, 800, 1000 points respectively. Base questions on the survey responses above.
 Answers must be phrased in Jeopardy style (e.g. "Who is ...?" or "What is ...?").
+The questions should not repeat the same information and must not refer to any individual family member by name.
 
 Return strict JSON:
 {{"questions": [

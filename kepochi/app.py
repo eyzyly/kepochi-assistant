@@ -31,6 +31,12 @@ data_source = st.radio(
     horizontal=True,
 )
 
+def _reset_downstream_state():
+    st.session_state.topics = None
+    st.session_state.selected_topics = []
+    st.session_state.questions_by_topic = {}
+
+
 if data_source == "Generate synthetic data":
     context_prompt = st.text_input("Optional context for the family (e.g. 'Malaysian family, 3 generations')")
     if st.button("Generate synthetic data"):
@@ -39,6 +45,7 @@ if data_source == "Generate synthetic data":
             st.session_state.demographics = demographics
             st.session_state.responses = responses
             save_synthetic_data(demographics, responses, out_dir=DATA_DIR)
+            _reset_downstream_state()
 else:
     demo_path = st.text_input("Demographics CSV path", value=os.path.join(DATA_DIR, "demographics.csv"))
     resp_path = st.text_input("Responses CSV path", value=os.path.join(DATA_DIR, "responses.csv"))
@@ -46,6 +53,7 @@ else:
         try:
             st.session_state.demographics = pd.read_csv(demo_path)
             st.session_state.responses = pd.read_csv(resp_path)
+            _reset_downstream_state()
             st.success(f"Loaded {demo_path} and {resp_path}")
         except FileNotFoundError as e:
             st.error(f"Could not find file: {e.filename}")
@@ -73,10 +81,12 @@ if st.session_state.demographics is not None:
     st.header("Step 3: Generate questions")
     if st.session_state.selected_topics and st.button("Generate questions for selected topics"):
         with st.spinner("Generating questions..."):
+            questions_by_topic = {}
             for topic in st.session_state.selected_topics:
-                st.session_state.questions_by_topic[topic] = generate_questions(
+                questions_by_topic[topic] = generate_questions(
                     st.session_state.demographics, st.session_state.responses, topic
                 )
+            st.session_state.questions_by_topic = questions_by_topic
 
     for topic, questions in st.session_state.questions_by_topic.items():
         st.subheader(topic)

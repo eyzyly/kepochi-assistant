@@ -1,0 +1,26 @@
+game_id,question_id,category,points,question,answer
+kepochi_game_001,Q1,Animated Movies,200,This animated movie features a young girl named Chihiro who becomes trapped in a spirit world.,What is Spirited Away?
+kepochi_game_001,Q2,Animated Movies,400,This animated superhero movie showcases a teen's adventures in a world of multiverses.,What is Spider-Man: Into the Spider-Verse?
+kepochi_game_001,Q3,Animated Movies,600,"In this animated film, a young boy named Hiccup befriends a dragon named Toothless.",What is How to Train Your Dragon?
+kepochi_game_001,Q4,Animated Movies,800,"This film tells the story of a pig who wants to become a sheepdog, and features a lot of farm animals.",What is Babe?
+kepochi_game_001,Q5,Animated Movies,1000,"In this iconic Disney movie, a young lion named Simba learns the responsibilities of kingship.",What is The Lion King?
+kepochi_game_001,Q1,Comfort Meals,200,This popular Indian dish is often enjoyed with garlic naan.,What is Chicken Tikka Masala?
+kepochi_game_001,Q2,Comfort Meals,400,"This Taiwanese dish consists of beef broth and noodles, popular as street food.",What is Beef Noodle Soup?
+kepochi_game_001,Q3,Comfort Meals,600,"This Middle Eastern dish is a spiced rice and meat dish, commonly found in the UAE.",What is Machboos?
+kepochi_game_001,Q4,Comfort Meals,800,"This Brazilian dish features black beans and various meats, and is a comforting traditional meal.",What is Feijoada?
+kepochi_game_001,Q5,Comfort Meals,1000,"In Ireland, this hearty meat pie is a favorite pub meal often enjoyed with vegetables.",What is Shepherd's Pie?
+kepochi_game_001,Q1,Childhood Toys,200,"This small digital pet toy, popular in the late 1990s, required feeding and care.",What is a Tamagotchi?
+kepochi_game_001,Q2,Childhood Toys,400,"This handheld gaming device, released in the mid-2000s, allowed players to play games on the go.",What is a Nintendo DS Lite?
+kepochi_game_001,Q3,Childhood Toys,600,"A traditional wooden toy often associated with rocking, commonly found in many families' homes.",What is a handcrafted wooden rocking horse?
+kepochi_game_001,Q4,Childhood Toys,800,"This popular building toy set, based on the theme of a galaxy far, far away, allows for creative construction.",What is LEGO Star Wars Sets?
+kepochi_game_001,Q5,Childhood Toys,1000,"This colorfully designed handheld game involves animal management and customization, becoming a favorite among many young players.",What is Animal Crossing: New Horizons?
+kepochi_game_001,Q1,Favorite Football Clubs,200,This English football club is known for its red jerseys and has a strong following worldwide.,What is Manchester United?
+kepochi_game_001,Q2,Favorite Football Clubs,400,This Brazilian football club is famously recognized by its red and black striped jerseys.,What is Flamengo?
+kepochi_game_001,Q3,Favorite Football Clubs,600,This football club in the UK is known for its history of winning trophies and its nickname is 'The Gunners.',What is Arsenal?
+kepochi_game_001,Q4,Favorite Football Clubs,800,"This sport is not just played on the field; it involves a ball and is popular in Brazil, combining elements of volleyball and beach football.",What is Footvolley?
+kepochi_game_001,Q5,Favorite Football Clubs,1000,"This game, based on an English football league, allows players to simulate matches and manage teams, popular with fans of the sport.",What is EA Sports FC 24?
+kepochi_game_001,Q1,Beach Sports,200,This sport played on the beach involves trying to kick a ball over a net to score points.,What is footvolley?
+kepochi_game_001,Q2,Beach Sports,400,"In this beach sport, players use their hands to throw a ball in a game, blending skills from basketball and volleyball.",What is beach handball?
+kepochi_game_001,Q3,Beach Sports,600,"This sport combines elements of surfing and swimming, often played in shallow beach waters.",What is beach polo?
+kepochi_game_001,Q4,Beach Sports,800,"This type of game played on the beach often involves skills similar to those used in volleyball, but is played with feet instead of hands.",What is beach soccer?
+kepochi_game_001,Q5,Beach Sports,1000,"In this beach sport, teams score by hitting a ball over a net while standing on the sand, often featuring strategic plays and teamwork.",What is beach volleyball?

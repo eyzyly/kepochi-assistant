@@ -1,6 +1,6 @@
-id,name,age,gender,country_of_birth,ethnicity,current_city
-1,Liam O'Connor,28,Male,Ireland,Caucasian,Dublin
-2,Mei-Ling Chen,34,Female,Taiwan,Han Chinese,Taipei
-3,Carlos Silva,19,Male,Brazil,Latino/Afro-Brazilian,Rio de Janeiro
-4,Amina Al-Mansoor,42,Female,UAE,Arab,Dubai
-5,Priya Patel,22,Female,UK,British Indian,London
+person_id,name,age,gender,country_of_birth,ethnicity,current_city
+P1,Ahmad,78,M,Singapore,Malay,Kuala Lumpur
+P2,Siti,75,F,Singapore,Malay,Kuala Lumpur
+P3,Zul,43,M,Malaysia,Malay,Kuala Lumpur
+P4,Maya,38,F,Malaysia,Malay,Kuala Lumpur
+P5,Rina,31,F,Malaysia,Malay,"Toronto, Canada"

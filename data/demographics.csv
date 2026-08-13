@@ -1,6 +1,6 @@
 person_id,name,age,gender,country_of_birth,ethnicity,current_city
-P1,Ahmad,76,Male,Singapore,Malay,"Kuala Lumpur, Malaysia"
-P2,Fatimah,74,Female,Singapore,Malay,"Kuala Lumpur, Malaysia"
-P3,Zainal,43,Male,Malaysia,Malay,"Kuala Lumpur, Malaysia"
-P4,Rina,38,Female,Malaysia,Malay,"Kuala Lumpur, Malaysia"
-P5,Aiman,31,Male,Malaysia,Malay,"Toronto, Canada"
+P1,Ahmad,75,Male,Singapore,Malay,"Kuala Lumpur, Malaysia"
+P2,Fatimah,72,Female,Singapore,Malay,"Kuala Lumpur, Malaysia"
+P3,Rizal,43,Male,Malaysia,Malay,"Damansara, Kuala Lumpur"
+P4,Siti,38,Female,Malaysia,Malay,"Damansara, Kuala Lumpur"
+P5,Lina,31,Female,Malaysia,Malay,"Toronto, Canada"

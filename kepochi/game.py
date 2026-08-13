@@ -47,7 +47,11 @@ should describe the answer almost directly, and each step up to 1000 should reve
 require piecing together more indirect hints, while all 5 remain answerable from the survey
 context. Clues should still be understandable to a 5 year old where possible.
 The clues should not repeat the same information and must not refer to any individual family
-member by name.
+member by name. The 5 answers must all be distinct — never reuse the same answer across
+difficulty levels within a topic. If the survey responses don't give you 5 distinct answers on
+their own, draw on other well-known things from the same era/category to fill the gaps (e.g. for
+a childhood toys topic, alongside LEGO or Barbie you could also use Hot Wheels, Care Bears, or
+He-Man), while keeping every clue plausibly tied to the family context.
 {feedback_section}
 Return strict JSON:
 {{"questions": [

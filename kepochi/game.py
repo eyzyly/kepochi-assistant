@@ -29,12 +29,20 @@ Generate exactly 5 Jeopardy-style questions for the topic "{topic}", ranked easi
 worth 200, 400, 600, 800, 1000 points respectively. Base questions on the survey responses above.
 Answers must be phrased in Jeopardy style (e.g. "Who is ...?" or "What is ...?").
 The questions should not repeat the same information and must not refer to any individual family member by name.
-
+{feedback_section}
 Return strict JSON:
 {{"questions": [
   {{"points": 200, "question": "...", "answer": "Who is ...?"}},
   ...
 ]}}
+"""
+
+FEEDBACK_SECTION_TEMPLATE = """
+The previous attempt at this topic was:
+{previous_questions}
+
+The user gave this feedback, revise the questions accordingly:
+{feedback}
 """
 
 
@@ -51,9 +59,14 @@ def generate_topics(demographics, responses):
     return data["topics"]
 
 
-def generate_questions(demographics, responses, topic):
+def generate_questions(demographics, responses, topic, feedback=None, previous_questions=None):
     context = _build_context(demographics, responses)
-    prompt = QUESTIONS_PROMPT_TEMPLATE.format(context=context, topic=topic)
+    feedback_section = ""
+    if feedback:
+        feedback_section = FEEDBACK_SECTION_TEMPLATE.format(
+            previous_questions=previous_questions, feedback=feedback
+        )
+    prompt = QUESTIONS_PROMPT_TEMPLATE.format(context=context, topic=topic, feedback_section=feedback_section)
     data = chat_json(SYSTEM_PROMPT, prompt)
     return data["questions"]
 

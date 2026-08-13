@@ -23,6 +23,12 @@ if "selected_topics" not in st.session_state:
     st.session_state.selected_topics = []
 if "questions_by_topic" not in st.session_state:
     st.session_state.questions_by_topic = {}
+if "topic_queue" not in st.session_state:
+    st.session_state.topic_queue = None
+if "current_topic_index" not in st.session_state:
+    st.session_state.current_topic_index = 0
+if "current_questions" not in st.session_state:
+    st.session_state.current_questions = None
 
 st.header("Step 1: Family data")
 data_source = st.radio(
@@ -35,6 +41,9 @@ def _reset_downstream_state():
     st.session_state.topics = None
     st.session_state.selected_topics = []
     st.session_state.questions_by_topic = {}
+    st.session_state.topic_queue = None
+    st.session_state.current_topic_index = 0
+    st.session_state.current_questions = None
 
 
 if data_source == "Generate synthetic data":
@@ -79,21 +88,52 @@ if st.session_state.demographics is not None:
         )
 
     st.header("Step 3: Generate questions")
-    if st.session_state.selected_topics and st.button("Generate questions for selected topics"):
-        with st.spinner("Generating questions..."):
-            questions_by_topic = {}
-            for topic in st.session_state.selected_topics:
-                questions_by_topic[topic] = generate_questions(
-                    st.session_state.demographics, st.session_state.responses, topic
-                )
-            st.session_state.questions_by_topic = questions_by_topic
+    if st.session_state.selected_topics and st.button("Start generating questions"):
+        st.session_state.topic_queue = list(st.session_state.selected_topics)
+        st.session_state.current_topic_index = 0
+        st.session_state.questions_by_topic = {}
+        st.session_state.current_questions = None
 
     for topic, questions in st.session_state.questions_by_topic.items():
-        st.subheader(topic)
+        st.subheader(f"{topic} ✅")
         st.table(pd.DataFrame(questions))
 
+    queue = st.session_state.topic_queue
+    if queue and st.session_state.current_topic_index < len(queue):
+        current_topic = queue[st.session_state.current_topic_index]
+        st.subheader(f"Reviewing topic {st.session_state.current_topic_index + 1}/{len(queue)}: {current_topic}")
+
+        if st.session_state.current_questions is None:
+            with st.spinner(f"Generating questions for '{current_topic}'..."):
+                st.session_state.current_questions = generate_questions(
+                    st.session_state.demographics, st.session_state.responses, current_topic
+                )
+
+        st.table(pd.DataFrame(st.session_state.current_questions))
+
+        if st.button("Looks good, next topic"):
+            st.session_state.questions_by_topic[current_topic] = st.session_state.current_questions
+            st.session_state.current_topic_index += 1
+            st.session_state.current_questions = None
+            st.rerun()
+
+        feedback = st.text_area("Feedback to revise these questions (optional)", key=f"feedback_{current_topic}")
+        if st.button("Regenerate with feedback"):
+            with st.spinner(f"Regenerating questions for '{current_topic}'..."):
+                st.session_state.current_questions = generate_questions(
+                    st.session_state.demographics,
+                    st.session_state.responses,
+                    current_topic,
+                    feedback=feedback,
+                    previous_questions=st.session_state.current_questions,
+                )
+            st.rerun()
+    elif queue:
+        st.success("All topics reviewed and confirmed.")
+
     st.header("Step 4: Export game CSV")
-    if st.session_state.questions_by_topic and st.button("Build game.csv"):
+    all_topics_done = bool(queue) and st.session_state.current_topic_index >= len(queue)
+    if all_topics_done and st.button("Build game.csv"):
         topics_with_questions = list(st.session_state.questions_by_topic.items())
         game_df = build_game_csv(topics_with_questions)
         game_path = os.path.join(DATA_DIR, "game.csv")

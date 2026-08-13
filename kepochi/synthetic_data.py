@@ -34,5 +34,5 @@ def generate_synthetic_data(context_prompt=""):
 
 
 def save_synthetic_data(demographics, responses, out_dir="data"):
-    demographics.to_csv(f"{out_dir}/demographics.csv", index=False)
-    responses.to_csv(f"{out_dir}/responses.csv", index=False)
+    demographics.to_csv(f"{out_dir}/synthetic_demographics.csv", index=False)
+    responses.to_csv(f"{out_dir}/synthetic_responses.csv", index=False)

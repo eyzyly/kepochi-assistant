@@ -4,7 +4,9 @@ import sys
 import pandas as pd
 import streamlit as st
 
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, PROJECT_ROOT)
+DATA_DIR = os.path.join(PROJECT_ROOT, "data")
 
 from kepochi.game import build_game_csv, generate_questions, generate_topics
 from kepochi.synthetic_data import generate_synthetic_data, save_synthetic_data
@@ -36,10 +38,10 @@ if data_source == "Generate synthetic data":
             demographics, responses = generate_synthetic_data(context_prompt)
             st.session_state.demographics = demographics
             st.session_state.responses = responses
-            save_synthetic_data(demographics, responses)
+            save_synthetic_data(demographics, responses, out_dir=DATA_DIR)
 else:
-    demo_path = st.text_input("Demographics CSV path", value="data/demographics.csv")
-    resp_path = st.text_input("Responses CSV path", value="data/responses.csv")
+    demo_path = st.text_input("Demographics CSV path", value=os.path.join(DATA_DIR, "demographics.csv"))
+    resp_path = st.text_input("Responses CSV path", value=os.path.join(DATA_DIR, "responses.csv"))
     if st.button("Load from CSV"):
         try:
             st.session_state.demographics = pd.read_csv(demo_path)
@@ -84,8 +86,9 @@ if st.session_state.demographics is not None:
     if st.session_state.questions_by_topic and st.button("Build game.csv"):
         topics_with_questions = list(st.session_state.questions_by_topic.items())
         game_df = build_game_csv(topics_with_questions)
-        game_df.to_csv("data/game.csv", index=False)
-        st.success("Saved to data/game.csv")
+        game_path = os.path.join(DATA_DIR, "game.csv")
+        game_df.to_csv(game_path, index=False)
+        st.success(f"Saved to {game_path}")
         st.dataframe(game_df)
         st.download_button(
             "Download game.csv",

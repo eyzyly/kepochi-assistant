@@ -25,10 +25,29 @@ Return strict JSON: {{"topics": ["topic 1", "topic 2", ...]}}
 QUESTIONS_PROMPT_TEMPLATE = """Family context (demographics + survey responses):
 {context}
 
-Generate exactly 5 Jeopardy-style questions for the topic "{topic}", ranked easiest to hardest,
-worth 200, 400, 600, 800, 1000 points respectively. Base questions on the survey responses above.
-Answers must be phrased in Jeopardy style (e.g. "Who is ...?" or "What is ...?").
-The questions should not repeat the same information and must not refer to any individual family member by name.
+Generate exactly 5 Jeopardy-style question/answer pairs for the topic "{topic}", worth 200, 400,
+600, 800, 1000 points respectively, in real Jeopardy style like the examples below:
+
+  - "This famous football team wears blue and red, and their mascot is a fierce Southern Tiger."
+    -> "What is JDT (Johor Darul Ta'zim)?"
+  - "Known as \"The Pocket Rocketman,\" this amazing track cyclist won Olympic medals for
+    Malaysia on his fast bicycle." -> "Who is Datuk Azizulhasni Awang?"
+  - "This delicious drink is a mix of both coffee and milk tea combined in one cup."
+    -> "What is Kopi Cham?"
+
+The "question" field is the CLUE, written as a third-person descriptive statement, never as a
+literal question and never simply restating the survey question (e.g. do NOT write "What is
+their favourite football club?" — instead describe or hint at the actual answer, like the
+examples above do). Weave in specific, vivid, playful detail pulled from the survey responses
+and demographics (nicknames, quirky facts, wordplay, humour) rather than generic phrasing.
+The "answer" field is the response, phrased in Jeopardy style ("Who is ...?" or "What is ...?").
+
+Points should track how obscured the clue is, not just vocabulary difficulty: the 200-point clue
+should describe the answer almost directly, and each step up to 1000 should reveal less and
+require piecing together more indirect hints, while all 5 remain answerable from the survey
+context. Clues should still be understandable to a 5 year old where possible.
+The clues should not repeat the same information and must not refer to any individual family
+member by name.
 {feedback_section}
 Return strict JSON:
 {{"questions": [

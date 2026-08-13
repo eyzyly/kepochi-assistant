@@ -1,26 +1,26 @@
 person_id,question_id,question,answer
 P1,Q1,What is your favourite football club?,Selangor FA
 P1,Q2,What is your favourite meal?,Nasi lemak
-P1,Q3,What is your favourite toy from childhood?,Kite
-P1,Q4,What is your favourite movie?,P Ramlee classics
+P1,Q3,What toy did you enjoy most as a child?,Kite
+P1,Q4,What is your favourite movie?,P Ramlee films
 P1,Q5,What is your favourite pastime?,Gardening
-P2,Q1,What is your favourite football club?,Perak FC
+P2,Q1,What is your favourite football club?,Perak FA
 P2,Q2,What is your favourite meal?,Rendang
-P2,Q3,What is your favourite toy from childhood?,Doll
-P2,Q4,What is your favourite movie?,Siti Zubaidah
-P2,Q5,What is your favourite family activity?,Cooking together
-P3,Q1,What is your favourite football club?,Liverpool FC
-P3,Q2,What is your favourite meal?,Char Kway Teow
-P3,Q3,What is your favourite childhood toy?,Remote control car
-P3,Q4,What is your favourite video game?,FIFA 22
-P3,Q5,What is your favourite weekend activity?,Going to the movies
-P4,Q1,What is your favourite football club?,Manchester United
-P4,Q2,What is your favourite meal?,Mamak Roti Canai
-P4,Q3,What is your favourite childhood toy?,Barbie doll
-P4,Q4,What is your favourite movie?,Crazy Rich Asians
-P4,Q5,What is your favourite thing to do with your kids?,Baking together
-P5,Q1,What is your favourite football club?,Chelsea FC
-P5,Q2,What is your favourite meal?,Sushi
-P5,Q3,What is your favourite childhood toy?,LEGO
-P5,Q4,What is your favourite video game?,The Legend of Zelda: Breath of the Wild
-P5,Q5,What is your favourite Canadian experience?,Hiking in Banff National Park
+P2,Q3,What toy did you enjoy most as a child?,Doll
+P2,Q4,What is your favourite movie?,Cinta
+P2,Q5,What is your favourite activity with your grandchildren?,Storytelling
+P3,Q1,What is your favourite football club?,KL City FC
+P3,Q2,What is your favourite meal?,Char kway teow
+P3,Q3,What was your favourite toy growing up?,Remote control car
+P3,Q4,What is your favourite video game?,FIFA
+P3,Q5,What is your favourite drink?,Teh Tarik
+P4,Q1,What is your favourite football club?,Johor Darul Ta'zim
+P4,Q2,What is your favourite meal?,Soto
+P4,Q3,What was your favourite toy as a child?,Skip rope
+P4,Q4,What is your favourite movie?,The Journey
+P4,Q5,What is your favourite hobby?,Cooking
+P5,Q1,What is your favourite football club?,Manchester United
+P5,Q2,What is your favourite meal?,Nasi goreng
+P5,Q3,What was your favourite toy as a child?,Legos
+P5,Q4,What is your favourite video game?,The Legend of Zelda
+P5,Q5,What is your favourite place to visit in Malaysia?,Langkawi
